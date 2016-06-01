@@ -5,7 +5,11 @@ module GeoNamesAPI
     def initialize(alternate_names_array)
       @name_by_lang = {}
       alternate_names_array.each do |hash|
-        @name_by_lang[hash['lang']] = hash['name']
+        if !@name_by_lang.key?(hash['lang'])
+          @name_by_lang[hash['lang']] = hash['name']
+        elsif hash['isPreferredName']
+          @name_by_lang[hash['lang']] = hash['name']
+        end
       end
     end
 
