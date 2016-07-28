@@ -9,6 +9,8 @@ module GeoNamesAPI
           @name_by_lang[hash['lang']] = hash['name']
         elsif hash['isPreferredName']
           @name_by_lang[hash['lang']] = hash['name']
+        elsif hash['isShortName']
+          @name_by_lang[hash['lang']] = hash['name']
         end
       end
     end
