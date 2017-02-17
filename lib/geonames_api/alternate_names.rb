@@ -7,10 +7,12 @@ module GeoNamesAPI
       alternate_names_array.each do |hash|
         if !@name_by_lang.key?(hash['lang'])
           @name_by_lang[hash['lang']] = hash['name']
-        elsif hash['isPreferredName']
+        elsif hash['name'].length < @name_by_lang[hash['lang']]
           @name_by_lang[hash['lang']] = hash['name']
-        elsif hash['isShortName']
-          @name_by_lang[hash['lang']] = hash['name']
+        # elsif hash['isPreferredName']
+        #   @name_by_lang[hash['lang']] = hash['name']
+        # elsif hash['isShortName']
+        #   @name_by_lang[hash['lang']] = hash['name']
         end
       end
     end
